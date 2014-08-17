@@ -29,3 +29,6 @@ Alpha has as many utilties as any basic project will need.
 - Cursor Position
 - Dart Version Information
 - npm dependency tree like tree creation
+- UTF8 Icons
+- Formatting Strings
+- Pub-like Timer
