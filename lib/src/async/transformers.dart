@@ -1,4 +1,4 @@
-part of alpha.streams;
+part of alpha.async;
 
 class StringTrimmer implements StreamTransformer<String, String> {  
   @override

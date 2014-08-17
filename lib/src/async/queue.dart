@@ -1,4 +1,4 @@
-part of alpha.tasks;
+part of alpha.async;
 
 typedef void Task();
 
