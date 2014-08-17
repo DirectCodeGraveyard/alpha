@@ -1,7 +1,9 @@
 analyzer.files:
   - lib/console.dart
-  - lib/streams.dart
+  - lib/observe.dart
   - lib/queue.dart
+  - lib/streams.dart
+  - lib/tasks.dart
   - lib/version.dart
 check.tasks: 
   - analyze
