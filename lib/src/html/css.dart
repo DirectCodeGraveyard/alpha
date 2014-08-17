@@ -15,3 +15,7 @@ void css(String selector, Map<String, String> properties) {
     }
   });
 }
+
+int pixelsToInteger(String input) {
+  return int.parse(input.substring(0, input.length - 2));
+}
