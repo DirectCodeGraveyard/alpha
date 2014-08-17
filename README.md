@@ -15,7 +15,7 @@ Alpha has as many utilties as any basic project will need.
 - Tracking Counts and States
 - Distributing Values to Functions
 
-## Server
+### Server
 
 - Progress Bars
 - Loading Bars
