@@ -32,3 +32,7 @@ Alpha has as many utilties as any basic project will need.
 - UTF8 Icons
 - Formatting Strings
 - Pub-like Timer
+
+## Demos
+
+[Console Integration Demo](http://i.imgur.com/spoojFe.png)
