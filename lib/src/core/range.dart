@@ -1,5 +1,8 @@
 part of alpha.core;
 
+/**
+ * Creates a list of integers from [start] to [end].
+ */
 List<int> range(int start, int end) {
   var range = [];
   

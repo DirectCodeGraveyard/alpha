@@ -1,14 +1,26 @@
 part of alpha.async;
 
+/**
+ * A Task Function
+ */
 typedef void Task();
 
+/**
+ * A Task Queue. Allows a prioritized way to execute tasks.
+ */
 class TaskQueue {
   final List<Task> _high = [];
   final List<Task> _low = [];
   Timer _timer;
   
+  /**
+   * Creates a Task Queue
+   */
   TaskQueue();
   
+  /**
+   * Adds the specified [task] to the queue with the optional [priority].
+   */
   void add(Task task, [Priority priority = Priority.LOW]) {
     if (priority.urgent) {
       _high.insert(0, task);
@@ -19,6 +31,9 @@ class TaskQueue {
     }
   }
   
+  /**
+   * Synchronously executes the queue.
+   */
   void run() {
     while (_high.isNotEmpty) {
       _high.removeAt(0)();
@@ -29,10 +44,16 @@ class TaskQueue {
     }
   }
   
+  /**
+   * Schedules the queue as a future.
+   */
   Future schedule() {
     return new Future(run);
   }
   
+  /**
+   * Starts a timer that executes the queue with an interval of [checkInterval] milliseconds.
+   */
   void start([int checkInterval = 1]) {
     
     if (_timer != null) {
@@ -49,6 +70,9 @@ class TaskQueue {
     });
   }
   
+  /**
+   * Stops the timer that executes the queue.
+   */
   void stop() {
     if (_timer == null) {
       throw "Queue was never started";
@@ -59,6 +83,11 @@ class TaskQueue {
   }
 }
 
+/**
+ * A Task Priority
+ * 
+ * [URGENT] is first, then [HIGH], and last [LOW].
+ */
 class Priority {
   static const Priority URGENT = const Priority(urgent: true);
   static const Priority HIGH = const Priority(high: true);
