@@ -1,0 +1,11 @@
+name: alpha
+version: 1.0.0
+description: A really awesome Utility Library
+homepage: "https://github.com/DirectMyFile/alpha"
+author: "Kenneth Endfinger <kaendfinger@gmail.com>"
+environment:
+  sdk: ">=1.5.0"
+dev_dependencies:
+  grinder: ">=0.5.7 <0.6.0"
+  yaml: ">=2.0.0 <2.1.0"
+

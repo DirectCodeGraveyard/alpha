@@ -1,0 +1,11 @@
+# Dart
+packages
+pubspec.lock
+
+# JetBrains IDE
+*.iml
+.idea/
+
+# Dart Editor
+.project
+.settings
