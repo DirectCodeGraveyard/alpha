@@ -1,6 +1,7 @@
 analyzer.files:
   - lib/console.dart
   - lib/streams.dart
+  - lib/version.dart
 check.tasks: 
   - analyze
 docs.output: out/docs
