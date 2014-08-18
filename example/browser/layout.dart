@@ -3,14 +3,14 @@ import "package:alpha/html.dart";
 import "package:dnd/dnd.dart";
 
 void main() {
-  var box = boxManager.create(128, 128);
-  box.appendTo(document.body);
-  box.setColor("blue", background: true);
-  box.enableDragging(new Dropzone(document.body));
+  var mainBox = boxManager.create(64, 64);
+  mainBox.appendTo(document.body);
+  mainBox.setColor("blue", background: true);
+  mainBox.enableDragging(new Dropzone(document.body));
 
   boxManager.moveApart(20);
   document.onKeyPress.where((it) => it.keyCode == 67).listen((e) {
-    var newBox = boxManager.clone(box);
+    var newBox = boxManager.clone(mainBox);
     var e = newBox.element;
     
     int i = 0;
@@ -27,7 +27,7 @@ void main() {
     }
     
     void callbackStart(_) {
-      if (i == 5) {
+      if (i == 7) {
         window.requestAnimationFrame(callbackEnd);
         return;
       }
@@ -38,5 +38,14 @@ void main() {
     }
     
     window.requestAnimationFrame(callbackStart);
+  });
+  
+  document.onKeyPress.where((e) => e.keyCode == 82).listen((e) {
+    var boxes = new List.from(boxManager.boxes);
+    boxes.forEach((box) {
+      if (mainBox != box) {
+        boxManager.remove(box);
+      }
+    });
   });
 }
