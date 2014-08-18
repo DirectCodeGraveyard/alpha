@@ -18,4 +18,3 @@ class CombinationLock {
     return _code == code;
   }
 }
-
