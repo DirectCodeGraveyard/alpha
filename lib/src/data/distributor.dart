@@ -12,8 +12,8 @@ class Distributor<T> {
   }
   
   void emit(T value) {
-    for (var function in functions) {
-      function();
+    for (DistributorFunction<T> function in functions) {
+      function(value);
     }
   }
 }
