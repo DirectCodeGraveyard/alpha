@@ -20,3 +20,21 @@ bool nor(bool a, bool b) =>
 
 bool xnor(bool a, bool b) =>
     a == b;
+
+int increment(int i) =>
+    i + 1;
+
+int decrement(int i) =>
+    i - 1;
+
+num add(num a, num b) =>
+    a + b;
+
+num subtract(num a, num b) =>
+    a - b;
+
+num multiply(num a, num b) =>
+    a * b;
+
+num divide(num a, num b) =>
+    a / b;
