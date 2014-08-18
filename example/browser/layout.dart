@@ -7,9 +7,36 @@ void main() {
   box.appendTo(document.body);
   box.setColor("blue", background: true);
   box.enableDragging(new Dropzone(document.body));
-  boxManager.multiply(box, 4);
+
   boxManager.moveApart(20);
   document.onKeyPress.where((it) => it.keyCode == 67).listen((e) {
-    boxManager.clone(box);
+    var newBox = boxManager.clone(box);
+    var e = newBox.element;
+    
+    int i = 0;
+    
+    void callbackEnd(_) {
+      if (i == 0) {
+        e.style.removeProperty("transform");
+        return;
+      }
+      
+      e.style.transform = "translate(0, ${i}px)";
+      window.requestAnimationFrame(callbackEnd);
+      i--;
+    }
+    
+    void callbackStart(_) {
+      if (i == 5) {
+        window.requestAnimationFrame(callbackEnd);
+        return;
+      }
+      
+      e.style.transform = "translate(0, ${i}px)";
+      window.requestAnimationFrame(callbackStart);
+      i++;
+    }
+    
+    window.requestAnimationFrame(callbackStart);
   });
 }
