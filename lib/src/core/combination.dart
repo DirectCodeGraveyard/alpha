@@ -5,7 +5,7 @@ class CombinationLock {
   
   CombinationLock(this._code);
   
-  static CombinationLock createRandom(int size, void callback(List<int> code)) {
+  static CombinationLock createRandom(int size, Acceptor<List<int>> callback) {
     var code = [];
     for (int i = 1; i<= size; i++) {
       code.add(new Random().nextInt(9));
