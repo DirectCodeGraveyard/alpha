@@ -19,3 +19,5 @@ void runTests(List<SuiteInfo> modules) {
     });
   }
 }
+
+void runSuite(SuiteInfo module) => runTests([module]);

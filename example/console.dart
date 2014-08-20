@@ -1,6 +1,8 @@
 import "package:alpha/console.dart";
 
 void main() {
+  Console.init();
+  
   print("Demo of Alpha Console Features");
   print("------------------------------");
   Console.setCrossedOut(true);
