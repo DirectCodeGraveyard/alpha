@@ -1,13 +1,14 @@
 name: alpha
 version: 1.0.0
+author: Kenneth Endfinger <kaendfinger@gmail.com>
 description: A really awesome Utility Library
-homepage: "https://github.com/DirectMyFile/alpha"
-author: "Kenneth Endfinger <kaendfinger@gmail.com>"
+homepage: https://github.com/DirectMyFile/alpha
 environment:
-  sdk: ">=1.5.0"
+  sdk: '>=1.5.0'
 dependencies:
-  dnd: ">=0.1.3 <0.5.0"
-  collection: ">=0.9.0 <0.10.0"
+  collection: '>=0.9.0 <0.10.0'
+  dnd: '>=0.1.3 <0.5.0'
+  unittest: '>=0.11.0 <0.12.0'
 dev_dependencies:
-  grinder: ">=0.5.7 <0.6.0"
-  yaml: ">=2.0.0 <2.1.0"
+  grinder: '>=0.5.7 <0.6.0'
+  yaml: '>=2.0.0 <2.1.0'
