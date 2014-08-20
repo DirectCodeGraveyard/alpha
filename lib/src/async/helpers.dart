@@ -13,14 +13,11 @@ Future<List<dynamic>> where(List<dynamic> input, bool filter(dynamic it)) {
   return completer.future;
 }
 
-typedef dynamic AsynchronousFunction();
-typedef bool BooleanFunction();
-
-Future async(AsynchronousFunction function) {
+Future async(Producer function) {
   return new Future(function);
 }
 
-Future chain(List<Function> functions) {
+Future chain(List<Action> functions) {
   var transformed = functions.map((it) => ([_]) => it());
   return async(() => transformed.forEach((it) => it()));
 }
