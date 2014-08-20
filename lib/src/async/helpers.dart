@@ -18,6 +18,7 @@ Future async(Producer function) {
 }
 
 Future chain(List<Action> functions) {
-  var transformed = functions.map((it) => ([_]) => it());
-  return async(() => transformed.forEach((it) => it()));
+  return async(() => executeChain(functions));
 }
+
+void executeChain(List<Action> actions) => actions.forEach((action) => action());
