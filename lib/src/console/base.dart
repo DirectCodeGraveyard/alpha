@@ -13,6 +13,13 @@ class Console {
     if (initialized) return;
     
     initialized = true;
+    
+    try {
+      stdout.terminalColumns;
+    } on StdoutException catch (e) {
+      throw "Advanced Terminal Features are not supported with your current environment.";
+    }
+    
     if (Platform.isLinux) {
       TERM = Platform.environment["TERM"];
     }
