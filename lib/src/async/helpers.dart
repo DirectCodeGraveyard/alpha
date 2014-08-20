@@ -12,3 +12,9 @@ Future<List<dynamic>> where(List<dynamic> input, bool filter(dynamic it)) {
   
   return completer.future;
 }
+
+typedef dynamic AsynchronousFunction();
+
+Future async(AsynchronousFunction function) {
+  return new Future(function);
+}
