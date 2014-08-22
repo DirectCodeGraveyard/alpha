@@ -25,3 +25,11 @@ void addMultiple(List<dynamic> input, dynamic object, int times) {
     input.add(object);
   }
 }
+
+List<dynamic> combine(List<List<dynamic>> lists) {
+  var list = [];
+  for (var entry in lists) {
+    list.addAll(entry);
+  }
+  return list;
+}
