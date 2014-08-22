@@ -58,10 +58,12 @@ class AlphaTestConfiguration extends SimpleConfiguration {
         break;
     }
     
+    bool useColor = stdioType(stdout) == StdioType.TERMINAL;
+    
     buff
-        ..write(color)
+        ..write(useColor ? color : "")
         ..write(status.toUpperCase())
-        ..write(NO_COLOR)
+        ..write(useColor ? NO_COLOR : "")
         ..write(": ")
         ..write(testCase.description)
         ..writeln();
