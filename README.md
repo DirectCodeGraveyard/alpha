@@ -1,37 +1,11 @@
-# Alpha
+# Alpha [![Build Status](https://travis-ci.org/DirectMyFile/alpha.svg)](https://travis-ci.org/DirectMyFile/alpha)
 
-Alpha is a utility library for Dart. It is intended to be the start of any Dart Project.
+The start of any Dart Project.
 
-## What does it have?
+Alpha is a lightweight high preforming utility belt for Dart.
+It's designed to get you from start to ship easier, quicker, and more effectively.
 
-Alpha has as many utilties as any basic project will need.
-
-### Client and Server
-- Task Queue
-- Stream Transformers
-- Asynchronous List Operations
-- Observable Lists
-- Semantic Version Parsing and Constraints
-- Tracking Counts and States
-- Distributing Values to Functions
-
-### Server
-
-- Progress Bars
-- Loading Bars
-- Prompts
-- Password Inputs
-- ANSI Text Styling (Color, Format)
-- Moving the Cursor
-- Cursor Position
-- Copying and Pasting to the Clipboard
-- Hiding the Cursor
-- Cursor Position
-- Dart Version Information
-- npm dependency tree like tree creation
-- UTF8 Icons
-- Formatting Strings
-- Pub-like Timer
+Alpha can help you build your next CLI, webapp, or library!
 
 ## Demos
 
