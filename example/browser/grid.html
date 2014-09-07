@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Management System</title>
+    <style>
+      p {
+        font-size: 20px;
+      }
+      
+      #options {
+        float: right;
+        padding-top: 15%;
+        padding-right: 230px;
+        text-align: center;
+      }
+    </style>
+  </head>
+ 
+  <body>
+    <div id="options">
+      <button id="switchToolMode">Switch Mode</button>
+      <button id="toggleScanningColor">Show Scanning Operations</button>
+      <button id="clearWalls">Clear Walls</button>
+      <p>
+        <b>Tool Mode</b>: <span id="toolMode">select target</span>
+        <br/>
+        <b>Show Scanning Operations</b>: <span id="showScanningColors">false</span>
+      </p>
+    
+    </div>
+    <div id="container"></div>
+  
+    <script type="application/dart" src="grid.dart"></script>
+    <script src="packages/browser/dart.js"></script>
+  </body>
+</html>
