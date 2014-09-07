@@ -125,7 +125,7 @@ class PathFindingQueueItem {
   PathFindingQueueItem(this.point, this.counter);
 }
 
-class GridPathFinder {
+class GridPathFinder extends GridPathFinderBase {
   final Cursor cursor;
   final Grid grid;
   CursorMoveHandler _actualOnMove;
@@ -138,7 +138,7 @@ class GridPathFinder {
 
   GridPathFinder(this.grid, this.cursor);
 
-  Future<List<PathFindingQueueItem>> findPath(Point<int> start, Point<int> target) {
+  Future<List<PathFindingQueueItem>> findPathSimple(Point<int> target) {
     var completer = new Completer();
     List<PathFindingQueueItem> queue = [new PathFindingQueueItem(target, 0)];
 
@@ -157,7 +157,7 @@ class GridPathFinder {
       var item = queue[i];
       var point = item.point;
       
-      if (point == start) {
+      if (point == cursor.position) {
         timer.cancel();
         completer.complete(queue);
         return;
@@ -168,7 +168,11 @@ class GridPathFinder {
       var toRemove = [];
 
       adjacent.forEach((it) {
-        if (scan(it.point) || queue.any((a) => a.point == it.point && a.counter == it.counter || a.counter > it.counter)) {
+        var rem = scan(it.point) || queue.any((a) {
+          return (a.point == it.point) && (a.counter >= it.counter);
+        });
+        
+        if (rem) {
           toRemove.add(it);
         }
       });
@@ -187,8 +191,8 @@ class GridPathFinder {
   
   Future goto(Point<int> point) {
     var completer = new Completer();
-    findPath(cursor.position, point).then((List<PathFindingQueueItem> items) {
-      new Timer.periodic(new Duration(milliseconds: 250), (Timer timer) {
+    findPathSimple(point).then((List<PathFindingQueueItem> items) {
+      new Timer.periodic(new Duration(milliseconds: 500), (Timer timer) {
         if (cursor.position == point) {
           timer.cancel();
           completer.complete();

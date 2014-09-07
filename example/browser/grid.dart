@@ -4,11 +4,13 @@ import "package:alpha/html.dart";
 // 0 is target. 1 is wall.
 int toolMode = 0;
 
-bool scanningColor = false;
+bool scanningColor = true;
 
 Grid grid;
 Cursor cursor;
-GridPathFinder pathFinder;
+GridPathFinderBase pathFinder;
+
+bool useAStar = true;
 
 var INIT_WALL_GRAPH = [
   [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -34,7 +36,6 @@ var INIT_WALL_GRAPH = [
 ];
 
 void main() {
-  
   querySelector("#switchToolMode").onClick.listen((event) {
     toolMode = toolMode == 0 ? 1 : 0;
     if (toolMode == 0) {
@@ -52,6 +53,8 @@ void main() {
   querySelector("#clearWalls").onClick.listen((event) {
     grid.eachBox((box) => box.ungrayOut());
   });
+  
+  querySelector("#switchStrategy").onClick.listen(updatePathFinder);
   
   var pointImg = new ImageElement(src: "img/point.png", width: 16, height: 16);
 
@@ -83,21 +86,36 @@ void main() {
 
     var now = grid.box(position.x, position.y);
     now.element.append(pointImg);
+    querySelector("#position").text = "(${position.x}, ${position.y})";
   });
   
-  pathFinder = new GridPathFinder(grid, cursor);
+  updatePathFinder();
+}
+
+void updatePathFinder([e]) {
+  useAStar = !useAStar;
+  if (useAStar) {
+    pathFinder = new GridPathFinderAStar(grid, cursor);
+  } else {
+    pathFinder = new GridPathFinder(grid, cursor);
+  }
   
-  pathFinder.onBoxScan.listen((box) {
-    if (!box.isGrayedOut && scanningColor) {
-      box.blinkColor("cyan", time: 250); 
-    }
-  });
+  if (pathFinder is GridPathFinder) {
+    GridPathFinder p = pathFinder;
+    p.onBoxScan.listen((box) {
+      if (!box.isGrayedOut && scanningColor) {
+        box.blinkColor("cyan", time: 100); 
+      }
+    });
+    
+    p.onNewQueueItem.listen((item) {
+      if (scanningColor) {
+        grid.box(item.point.x, item.point.y).blinkColor("orange", time: 250, border: true);
+      }
+    });
+  }
   
-  pathFinder.onNewQueueItem.listen((item) {
-    if (scanningColor) {
-      grid.box(item.point.x, item.point.y).blinkColor("orange", time: 250, border: true);
-    }
-  });
+  querySelector("#strategy").text = useAStar ? "A*" : "Simple";
 }
 
 void onBoxClick(GridSection box, MouseEvent event) {
