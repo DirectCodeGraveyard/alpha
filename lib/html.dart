@@ -16,5 +16,6 @@ part 'src/html/scripts.dart';
 part 'src/html/layout.dart';
 part 'src/html/box.dart';
 part 'src/html/grid.dart';
+part 'src/html/cursor.dart';
 part 'src/html/path.dart';
-part 'src/html/astar.dart';
+part 'src/html/asset.dart';

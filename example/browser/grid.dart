@@ -51,19 +51,12 @@ void main() {
   });
   
   querySelector("#clearWalls").onClick.listen((event) {
-    grid.eachBox((box) => box.ungrayOut());
+    grid.eachBox((box) {
+      box.ungrayOut();
+    });
   });
   
   querySelector("#switchStrategy").onClick.listen(updatePathFinder);
-  
-  var pointImg = new ImageElement(src: "img/point.png", width: 16, height: 16);
-
-  pointImg.style
-      ..paddingLeft = "8px"
-      ..paddingRight = "8px"
-      ..paddingTop = "8px"
-      ..paddingBottom = "8px";
-
 
   var container = querySelector("#container");
   grid = new Grid(container, 20, 20);
@@ -77,15 +70,18 @@ void main() {
     
     box.onClick.listen((e) => onBoxClick(box, e));
   });
-
+  
   cursor = new BasicCursor(new Point(1, 1), (Point<int> originalPosition, Point<int> position) {
+    var now = grid.box(position.x, position.y);
+    
     if (originalPosition != null) {
       var orig = grid.box(originalPosition.x, originalPosition.y);
-      orig.element.children.remove(pointImg);
+      now.style.backgroundColor = "orange";
+      orig.element.style.backgroundColor = "blue";
+    } else {
+      now.style.backgroundColor = "orange";
     }
-
-    var now = grid.box(position.x, position.y);
-    now.element.append(pointImg);
+    
     querySelector("#position").text = "(${position.x}, ${position.y})";
   });
   
@@ -97,14 +93,14 @@ void updatePathFinder([e]) {
   if (useAStar) {
     pathFinder = new GridPathFinderAStar(grid, cursor);
   } else {
-    pathFinder = new GridPathFinder(grid, cursor);
+    pathFinder = new GridPathFinderSimple(grid, cursor);
   }
   
-  if (pathFinder is GridPathFinder) {
-    GridPathFinder p = pathFinder;
+  if (pathFinder is GridPathFinderSimple) {
+    GridPathFinderSimple p = pathFinder;
     p.onBoxScan.listen((box) {
-      if (!box.isGrayedOut && scanningColor) {
-        box.blinkColor("cyan", time: 100); 
+      if (!box.isGrayedOut && scanningColor && box.style.backgroundColor != "orange") {
+        box.blinkColor("cyan", time: 100);
       }
     });
     
@@ -123,6 +119,13 @@ void onBoxClick(GridSection box, MouseEvent event) {
     var target = new Point<int>(box.x, box.y);
     
     box.style.borderColor = "red";
+    
+    grid.eachBox((box) {
+      var style = box.element.style;
+      if (style.backgroundColor == "blue") {
+        style.removeProperty("background-color");
+      }
+    });
     
     pathFinder.goto(target).then((_) {
       box.style.removeProperty("border-color");
