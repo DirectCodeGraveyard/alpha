@@ -21,6 +21,10 @@ class Clipboard {
   }
   
   static String getClipboard() {
+    if (!isSupported) {
+      throw new UnsupportedError("Clipboard Features are not supported in your environment.");
+    }
+
     var result = Process.runSync("/usr/bin/xclip", ["-selection", "clipboard", "-o"]);
     if (result.exitCode != 0) {
       throw new Exception("Failed to get clipboard. Exit Code was not 0");
@@ -29,6 +33,10 @@ class Clipboard {
   }
   
   static void setClipboard(String content) {
+    if (!isSupported) {
+      throw new UnsupportedError("Clipboard Features are not supported in your environment.");
+    }
+    
     Process.start("/usr/bin/xclip", ["-selection", "clipboard"]).then((process) {
       process.stdin.write(content);
       process.stdin.close();
