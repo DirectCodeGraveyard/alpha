@@ -1,12 +1,12 @@
 name: alpha
-version: 1.0.0
+version: 1.0.1
 author: Kenneth Endfinger <kaendfinger@gmail.com>
 description: A really awesome Utility Library
 homepage: https://github.com/DirectMyFile/alpha
 environment:
   sdk: '>=1.5.0'
 dependencies:
-  collection: '>=1.0.0 <1.2.0'
+  collection: '>=1.0.1 <1.2.0'
   dnd: '>=0.1.3 <0.5.0'
   unittest: '>=0.11.0 <0.12.0'
   a_star: 0.3.0
