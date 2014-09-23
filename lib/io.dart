@@ -8,4 +8,3 @@ import 'version.dart';
 
 part 'src/io/dart.dart';
 part 'src/io/fs.dart';
-part 'src/io/eval.dart';
