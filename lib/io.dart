@@ -4,7 +4,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'version.dart';
+import 'package:pub_semver/pub_semver.dart';
 
 part 'src/io/dart.dart';
 part 'src/io/fs.dart';
