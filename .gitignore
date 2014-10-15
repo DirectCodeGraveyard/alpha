@@ -9,3 +9,6 @@ pubspec.lock
 # Dart Editor
 .project
 .settings
+.pub/bin/grinder/grind.dart.snapshot
+.pub/bin/grinder/grinder.dart.snapshot
+.pub/bin/sdk-version

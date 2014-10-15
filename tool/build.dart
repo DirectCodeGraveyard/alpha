@@ -28,14 +28,10 @@ void main(List<String> args) {
   task("version", createVersionTask());
   
   task("publish", (context) {
-    runSdkBinary(context, "pub", arguments: ["publish", "-f"]);
-  }, depends: ["version"]);
+    runProcess(context, "pub", arguments: ["publish", "-f"]);
+  },["version"]);
   
-  task("check", (_) {}, depends: getvar("check.tasks", []).map(parse_config_value).toList());
+  task("check", (_) {}, getvar("check.tasks", []).map(parse_config_value).toList());
 
   startGrinder(args);
-}
-
-void task(String name, TaskFunction function, {List<String> depends: const []}) {
-  defineTask(name, taskFunction: function, depends: depends);
 }

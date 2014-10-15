@@ -8,6 +8,6 @@ TaskFunction createAnalyzerTask(Iterable<String> files, [Iterable<String> extra_
       args.addAll(extra_args);
     }
     
-    runSdkBinary(context, "dartanalyzer", arguments: args);
+    runProcess(context, "dartanalyzer", arguments: args);
   };
 }
