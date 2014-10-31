@@ -6,9 +6,7 @@ homepage: https://github.com/DirectMyFile/alpha
 environment:
   sdk: '>=1.5.0'
 dependencies:
-  a_star: 0.3.0
   collection: '>=1.0.0 <1.2.0'
-  dnd: '>=0.1.3 <0.5.0'
   pub_semver: '>=1.0.0 <2.0.0'
   unittest: '>=0.11.0 <0.12.0'
 dev_dependencies:
