@@ -4,9 +4,9 @@ void main() {
   var lists = [];
   var counter = 0;
   try {
-    for (var i in range(1, 9999999)) {
+    for (var i in MathHelpers.range(1, 9999999)) {
       i++;
-      lists.add(range(0, i));
+      lists.add(MathHelpers.range(0, i));
       if ((i % 500) == 0) {
         print("Progress: ${i}");
       }
