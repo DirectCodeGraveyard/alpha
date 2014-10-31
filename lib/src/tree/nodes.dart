@@ -57,7 +57,10 @@ class TreeNode {
     _children.add(node);
   }
   
-  void printGraph() {
+  void printGraph({bool checkCyclic: true}) {
+    if (checkCyclic && _checkCyclic(this)) {
+      throw new StateError("Unable to print a cyclic graph!");
+    }
     printTree(_createGraphSection());
   }
   
@@ -78,9 +81,39 @@ class TreeNode {
   }
 }
 
+bool _checkCyclic(TreeNode root) {
+  List<TreeNode> visited = [];
+  List<TreeNode> queued = [root];
+  while (queued.isNotEmpty) {
+    TreeNode current = queued.removeAt(0);
+    visited.add(current);
+    
+    var cyclicParent = current.parent == current;
+    
+    if (cyclicParent) {
+      return true;
+    }
+    
+    var cyclicChildren = current.children.any((child) {
+      return visited.contains(child);
+    });
+    
+    if (cyclicChildren) {
+      return true;
+    }
+    
+    queued.addAll(current.children);
+  }
+  return false;
+}
+
 class Tree {
   final TreeNode root;
   
   Tree() : root = new TreeNode.root();
   Tree.withRoot(this.root);
+  
+  bool isCyclic() => _checkCyclic(root);
+  
+  void printGraph() => root.printGraph();
 }

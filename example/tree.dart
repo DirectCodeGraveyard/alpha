@@ -10,5 +10,9 @@ void main() {
   
   print("Root Node is equal to Root Node: ${tree.root == tree.root}");
   print("Root Node is not equal to another Root Node: ${tree.root != new TreeNode.root()}");
-  tree.root.printGraph();
+  tree.printGraph();
+  print("Tree is cyclic: ${tree.isCyclic()}");
+  print("Adding Root Node as a child of Root Node");
+  tree.root.addChild(tree.root);
+  print("Tree is cyclic: ${tree.isCyclic()}");
 }
