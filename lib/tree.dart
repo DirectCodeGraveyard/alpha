@@ -1,6 +1,7 @@
 library alpha.tree;
 
 import 'core.dart';
+import 'package:indented_string_buffer/indented_string_buffer.dart';
 import 'package:console/console.dart' show printTree;
 import 'dart:collection';
 

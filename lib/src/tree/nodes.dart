@@ -107,6 +107,30 @@ bool _checkCyclic(TreeNode root) {
   return false;
 }
 
+class DotGraphBuilder {
+  String build(TreeNode root, {String name: "Tree"}) {
+    var buff = new IndentedStringBuffer("  ");
+    buff.writeln("digraph \"${name}\" {");
+    buff.level++;
+    buff.writeln("node [fontname=Helvetica];");
+    buff.writeln("edge [fontname=Helvetica, fontcolor=gray];");
+    
+    List<TreeNode> queued = [root];
+    
+    while (queued.isNotEmpty) {
+      var node = queued.removeAt(0);
+      if (!node.isRootNode) {
+        buff.writeln('"${node.parent.name}" -> "${node.name}";'); 
+      }
+      queued.addAll(node.children);
+    }
+    
+    buff.level--;
+    buff.writeln("}");
+    return buff.toString();
+  }
+}
+
 class Tree {
   final TreeNode root;
   
