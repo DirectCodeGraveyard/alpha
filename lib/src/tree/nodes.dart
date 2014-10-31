@@ -61,16 +61,16 @@ class TreeNode {
     if (checkCyclic && _checkCyclic(this)) {
       throw new StateError("Unable to print a cyclic graph!");
     }
-    printTree(_createGraphSection());
+    printTree(createTreeMap());
   }
   
-  Map<String, dynamic> _createGraphSection() {
+  Map<String, dynamic> createTreeMap() {
     var section = {
       "label": toString()
     };
     
     section["nodes"] = children.map((child) {
-      return child._createGraphSection();
+      return child.createTreeMap();
     }).toList(growable: true);
     
     return section;
