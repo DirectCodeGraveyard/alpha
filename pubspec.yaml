@@ -8,7 +8,7 @@ environment:
 dependencies:
   collection: '>=1.0.0 <1.2.0'
   pub_semver: '>=1.0.0 <2.0.0'
-  unittest: '>=0.11.0 <0.12.0'
 dev_dependencies:
+  unittest: '>=0.11.0 <0.12.0'
   grinder: '>=0.6.1 <0.7.0'
   yaml: '>=2.0.0 <2.1.0'
